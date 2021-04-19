@@ -1,0 +1,7 @@
+{
+    "editor.snippetSuggestions": "bottom",
+    "Lua.diagnostics.disable": [
+        "trailing-space",
+        612
+    ]
+}

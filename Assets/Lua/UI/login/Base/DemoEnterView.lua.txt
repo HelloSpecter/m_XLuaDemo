@@ -1,0 +1,30 @@
+local DemoEnterView = {}
+setmetatable(DemoEnterView, {__index = UIBase})
+
+function DemoEnterView:Create()
+    self.name = 'DemoEnter'
+    self.path = 'login'
+end
+function DemoEnterView:SetUICompent(child)
+    if child.name == 'Btn_DemoEnter' then
+        DemoEnterView.buttonEnter = child:GetComponent('Button')
+    elseif child.name == 'Btn_SwitchIcon' then
+        DemoEnterView.Btn_SwitchIcon = child:GetComponent('Button')
+    elseif child.name == 'Panel' then
+        DemoEnterView.Panel = child:GetComponent('Image')
+    end
+end
+function DemoEnterView:Init()
+    DemoEnterView.buttonEnter.onClick:AddListener(
+        function()
+            self:ButtonClickHandler(DemoEnterView.buttonEnter)
+        end
+    )
+    DemoEnterView.Btn_SwitchIcon.onClick:AddListener(
+        function()
+            self:ButtonClickHandler(DemoEnterView.Btn_SwitchIcon)
+        end
+    )
+end
+
+return DemoEnterView

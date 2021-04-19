@@ -1,0 +1,40 @@
+
+require("public")
+require 'ui' 
+
+require 'net'  
+require 'plugin'
+require("tools")  
+require 'list'
+require 'event'
+require 'GameMainData' 
+require 'StaticData/StaticData'
+--math.randomseed(os.time()) 
+ 
+--[[
+   -- 创建携程方法
+	  local util = require 'xlua.util' 
+		local yield_return = (require 'cs_coroutine').yield_return 
+		local co = coroutine.create(function() 
+      for i=1 , 10 ,1  do 
+          print(i )
+          yield_return(CS.UnityEngine.WaitForSeconds(3))
+      end  
+    end)
+   -- 携程方法创建 end  
+		assert(coroutine.resume(co)) --调用 携程
+    ]] 
+
+function Start()  
+ 
+ 
+end 
+
+function update()
+  Event.Call("updateG") 
+end 
+
+function sockerSendMsg(v)
+  print("sockerSendMsg " , v) 
+  Event.Call("sockerSendMsg",v)
+end 

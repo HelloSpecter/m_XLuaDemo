@@ -1,0 +1,44 @@
+DemoEnter = {}
+local UITable = require('UI/login/Base/DemoEnterView')
+
+function DemoEnter.Create()
+    local ui = {}
+    setmetatable(ui, {__index = UITable})
+    ui:Create()
+    ui.layer = 1
+    UI.LoadUI(ui)
+    return ui
+end
+
+function UITable:Awake()
+    self:Init()
+
+    self:InItClientData()
+end
+
+DemoEnter.clientData = {}
+--读取本地记录的数据（玩家账号及设置等信息）
+function UITable:InItClientData()
+    local data = {}
+    data.money = 55
+    data.level = 1
+    data.exp = 0
+    GameMainData.DemoPlayerModel:SetData(data)
+    print(GameMainData.DemoPlayerModel:GetData().money)
+end
+
+UITable.picPool = {'bg1', 'bg2', 'bg3', 'bg4'}
+
+function UITable:ButtonClickHandler(btn)
+    -- LuaTools.PlaySound("btnsound")
+    if btn == self.buttonEnter then
+        print('click  buttonEnter')
+        UI.OpenUI('DemoMain')
+        self:Close()
+    elseif btn == self.Btn_SwitchIcon then
+        local n = math.random(1, 4)
+        print('切换图片->' .. n .. self.picPool[n])
+		self.Panel.sprite = Public.GetSprite(self.picPool[n],"public")
+		print(self.Panel.sprite)
+    end
+end
